@@ -126,5 +126,41 @@ meaningText: {
   fontSize: 16,
   marginBottom: 5,
 },
+modeToggleContainer: {
+  flexDirection: 'row',
+  justifyContent: 'center',
+  marginTop: 10,
+  marginBottom: 10,
+},
+toggleButton: {
+  backgroundColor: '#ccc',
+  paddingVertical: 8,
+  paddingHorizontal: 20,
+  marginHorizontal: 10,
+  borderRadius: 5,
+},
+toggleButtonActive: {
+  backgroundColor: '#a60000',
+},
+toggleButtonText: {
+  color: 'white',
+  fontWeight: 'bold',
+},
+choiceButton: {
+  backgroundColor: '#eee',
+  padding: 10,
+  marginVertical: 5,
+  borderRadius: 5,
+  alignItems: 'center',
+  width: 250,
+},
+
+correctChoice: {
+  backgroundColor: 'lightgreen',
+},
+
+wrongChoice: {
+  backgroundColor: '#ff9999',
+},
 
 });
