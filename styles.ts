@@ -3,81 +3,128 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e6cfa4',
+    backgroundColor: '#ead2a4',
   },
   topBar: {
-    height: 50,
-    backgroundColor: '#a10000',
+    height: 40,
+    backgroundColor: '#a60000',
     justifyContent: 'center',
-    alignItems: 'center',
+    paddingHorizontal: 10,
   },
   topBarText: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 16,
   },
-  main: {
-    flex: 1,
+  topBarRight: {
+    position: 'absolute',
+    right: 10,
+    top: 10,
     flexDirection: 'row',
-  },
-  content: {
-    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
   },
-  jlptButtons: {
-    flexDirection: 'row',
+  sidebar: {
+    position: 'absolute',
+    right: 0,
+    top: 40,
+    backgroundColor: '#a60000',
+    height: '100%',
+    width: 150,
+    padding: 10,
+    zIndex: 100,
+  },
+  sidebarButton: {
+    backgroundColor: '#ddd',
+    padding: 10,
+    marginVertical: 5,
+    alignItems: 'center',
+  },
+  contentArea: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 40,
+  },
+  selectorRow: {
+    alignItems: 'center',
     marginBottom: 20,
   },
-  jlptButton: {
-    backgroundColor: '#eee',
-    marginHorizontal: 5,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    borderRadius: 5,
-  },
-  jlptButtonText: {
+  levelSelectorLabel: {
+    marginBottom: 5,
     fontWeight: 'bold',
   },
+  levelButtons: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 10,
+  },
+  levelButton: {
+    backgroundColor: '#ccc',
+    padding: 10,
+    marginHorizontal: 5,
+    borderRadius: 5,
+  },
+  selectedLevelButton: {
+    backgroundColor: '#666',
+  },
+  levelButtonText: {
+    color: 'black',
+  },
   flashcard: {
-    width: 200,
-    height: 200,
     backgroundColor: '#ddd',
+    width: 300,
+    height: 150,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 10,
+    marginTop: 20,
   },
-  kanji: {
+  wordText: {
     fontSize: 32,
   },
   meaningButton: {
-    backgroundColor: '#ccc',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    marginBottom: 10,
+    backgroundColor: '#ddd',
+    padding: 10,
+    marginTop: 10,
+    alignSelf: 'center',
   },
   saveButton: {
-    backgroundColor: '#a10000',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    backgroundColor: '#a60000',
+    padding: 10,
+    marginTop: 10,
+    alignSelf: 'center',
   },
   saveButtonText: {
     color: 'white',
+  },
+  correct: {
+    color: 'blue',
+    marginTop: 10,
+  },
+  wrong: {
+    color: 'red',
+    marginTop: 10,
+  },
+  startButton: {
+    marginTop: 10,
+    color: 'purple',
     fontWeight: 'bold',
   },
-  sidebar: {
-    width: 120,
-    backgroundColor: '#a10000',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingVertical: 40,
-  },
-  username: {
-    color: 'white',
-    marginBottom: 20,
-  },
-  logoutButton: {
-    backgroundColor: '#ccc',
-    padding: 10,
-  },
+  levelSelector: {
+  padding: 10,
+  marginTop: 10,
+  alignItems: 'center',
+},
+meaningBox: {
+  backgroundColor: '#ddd',
+  padding: 15,
+  borderRadius: 8,
+  marginTop: 10,
+  alignItems: 'center',
+  alignSelf: 'center',
+  width: 300,
+},
+meaningText: {
+  fontSize: 16,
+  marginBottom: 5,
+},
+
 });

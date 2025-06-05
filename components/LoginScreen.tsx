@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { supabase } from './supabaseClient';
+import { supabase } from '../supabaseClient';
 
-
-export default function LoginScreen() {
+export default function LoginScreen({ goToSignup }: { goToSignup: () => void }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -39,6 +38,10 @@ export default function LoginScreen() {
       />
       <TouchableOpacity onPress={handleLogin} style={styles.button}>
         <Text style={styles.buttonText}>Log In</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={goToSignup} style={{ marginTop: 20 }}>
+        <Text>Don't have an account? Sign Up</Text>
       </TouchableOpacity>
     </View>
   );
