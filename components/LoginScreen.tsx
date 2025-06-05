@@ -1,80 +1,50 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import { supabase } from '../supabaseClient';
 
-export default function LoginScreen({ goToSignup }: { goToSignup: () => void }) {
+type Props = {
+  onLogin: () => void;
+};
+
+export default function LoginScreen({ onLogin }: Props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
 
     if (error) {
-      Alert.alert('Login Error', error.message);
+      Alert.alert('Login failed', error.message);
     } else {
-      Alert.alert('Success', 'Logged in!');
+      onLogin(); // ✅ Let App.tsx know login succeeded
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <TextInput
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        style={styles.input}
-        autoCapitalize="none"
-      />
-      <TextInput
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        style={styles.input}
-        secureTextEntry
-      />
-      <TouchableOpacity onPress={handleLogin} style={styles.button}>
-        <Text style={styles.buttonText}>Log In</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={goToSignup} style={{ marginTop: 20 }}>
-        <Text>Don't have an account? Sign Up</Text>
-      </TouchableOpacity>
+      <Text style={styles.label}>Email</Text>
+      <TextInput value={email} onChangeText={setEmail} style={styles.input} autoCapitalize="none" />
+      <Text style={styles.label}>Password</Text>
+      <TextInput value={password} onChangeText={setPassword} style={styles.input} secureTextEntry />
+      <Button title="Login" onPress={handleLogin} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#e6cfa4',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
+    padding: 24,
+    marginTop: 100,
   },
-  title: {
-    fontSize: 24,
-    marginBottom: 24,
+  label: {
+    fontWeight: 'bold',
+    marginBottom: 4,
   },
   input: {
-    width: '100%',
-    borderColor: '#ccc',
     borderWidth: 1,
-    padding: 10,
+    borderColor: '#ccc',
     marginBottom: 12,
-    borderRadius: 5,
-    backgroundColor: 'white',
-  },
-  button: {
-    backgroundColor: '#a10000',
-    padding: 12,
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
+    padding: 8,
+    borderRadius: 4,
   },
 });

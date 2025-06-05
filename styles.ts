@@ -162,5 +162,39 @@ correctChoice: {
 wrongChoice: {
   backgroundColor: '#ff9999',
 },
+input: {
+  backgroundColor: 'white',
+  borderColor: '#ccc',
+  borderWidth: 1,
+  padding: 8,
+  marginTop: 10,
+  marginBottom: 10,
+  width: 200,
+},
+
+logoutButton: {
+  backgroundColor: '#ddd',
+  padding: 10,
+  marginTop: 20,
+  borderRadius: 4,
+},
+
+logoutText: {
+  color: 'black',
+  fontWeight: 'bold',
+},
+
+button: {
+  backgroundColor: '#ccc',
+  padding: 10,
+  marginTop: 10,
+  borderRadius: 4,
+},
+
+buttonText: {
+  fontSize: 14,
+  fontWeight: 'bold',
+  color: 'black',
+},
 
 });

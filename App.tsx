@@ -1,40 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { supabase } from './supabaseClient';
-import FlashcardApp from './components/FlashcardApp';
-import LoginScreen from './components/LoginScreen';
-import SignupScreen from './components/SignupScreen';
-import { Session } from '@supabase/supabase-js';
+import { User } from '@supabase/supabase-js';
+import FlashcardApp from './components/FlashcardApp'; // ✅ points to HomeScreen.tsx
+import Login from './components/LoginScreen';       // ✅ points to LoginScreen.tsx
 
 export default function App() {
-  const [session, setSession] = useState<Session | null>(null);
-  const [showSignup, setShowSignup] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const getSession = async () => {
-      const { data, error } = await supabase.auth.getSession();
-      if (!error) {
-        setSession(data.session);
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
+
+      if (error) {
+        console.error('Error getting session:', error.message);
+        return;
       }
+
+      setUser(session?.user ?? null);
     };
 
     getSession();
 
-    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
+    const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
     });
 
     return () => {
-      authListener.subscription.unsubscribe();
+      data.subscription.unsubscribe(); // ✅ fixed unsubscribe
     };
   }, []);
 
-  if (session) {
-    return <FlashcardApp user={session.user} />;
-  }
-
-  return showSignup ? (
-    <SignupScreen goToLogin={() => setShowSignup(false)} />
-  ) : (
-    <LoginScreen goToSignup={() => setShowSignup(true)} />
-  );
+  return user ? <FlashcardApp user={user} /> : <Login onLogin={() => {}} />;
 }

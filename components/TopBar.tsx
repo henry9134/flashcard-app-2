@@ -11,7 +11,7 @@ export default function TopBar({ user, onToggleSidebar }: TopBarProps) {
     <View style={styles.topBar}>
       <Text style={styles.title}>FLASHCARD APP</Text>
       <View style={styles.right}>
-        <Text style={styles.email}>{user.email}</Text>
+        <Text style={styles.email}>{user?.email || 'Guest'}</Text>
         <TouchableOpacity onPress={onToggleSidebar}>
           <Text style={styles.toggle}>Open Sidebar</Text>
         </TouchableOpacity>
@@ -23,25 +23,27 @@ export default function TopBar({ user, onToggleSidebar }: TopBarProps) {
 const styles = StyleSheet.create({
   topBar: {
     height: 50,
-    backgroundColor: '#a00000',
+    backgroundColor: '#333',
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
+    alignItems: 'center',
     paddingHorizontal: 15,
   },
   title: {
-    color: 'white',
+    color: '#fff',
+    fontSize: 18,
     fontWeight: 'bold',
   },
   right: {
-    alignItems: 'flex-end',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   email: {
-    color: 'white',
-    fontSize: 12,
+    color: '#fff',
+    marginRight: 10,
   },
   toggle: {
-    color: 'lightblue',
+    color: '#fff',
     textDecorationLine: 'underline',
   },
 });

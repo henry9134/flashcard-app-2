@@ -4,17 +4,25 @@ import { supabase } from '../supabaseClient';
 
 type SidebarProps = {
   onCollapse: () => void;
+  onOpenSavedLists: () => void;
 };
 
-export default function Sidebar({ onCollapse }: SidebarProps) {
+export default function Sidebar({ onCollapse, onOpenSavedLists }: SidebarProps) {
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error('Logout failed:', error.message);
+    }
   };
 
   return (
     <View style={styles.sidebar}>
       <TouchableOpacity onPress={onCollapse} style={styles.close}>
         <Text style={styles.closeText}>Close Sidebar</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={onOpenSavedLists} style={styles.listButton}>
+        <Text style={styles.listText}>Saved Lists</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
@@ -42,6 +50,15 @@ const styles = StyleSheet.create({
   },
   closeText: {
     fontSize: 12,
+  },
+  listButton: {
+    backgroundColor: '#ddd',
+    padding: 10,
+    marginTop: 10,
+    borderRadius: 4,
+  },
+  listText: {
+    fontWeight: 'bold',
   },
   logoutButton: {
     backgroundColor: '#ddd',
